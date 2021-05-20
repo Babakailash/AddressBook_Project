@@ -1,5 +1,4 @@
 public class ContactDetails {
-
     private String firstName, lastName, address, city, state, email, zip, phoneNumber ;
 
     public ContactDetails(String firstName, String lastName, String address, String city, String state,

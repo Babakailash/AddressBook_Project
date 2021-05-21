@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class AddressBookMain {
+class AddressBookMain {
     public static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) {
+    private static AddressBook addressBook = new AddressBook();
+    public Map<String,AddressBook> addressBookListMap = new HashMap<>();
 
-        System.out.println("Welcome to Address Book Program");
+    public void addAddressBook(String bookName){
 
-        AddressBook addressBook = new AddressBook();
         boolean flag = true;
 
         while(flag) {
@@ -22,7 +22,8 @@ public class AddressBookMain {
             switch (option)
             {
                 case 1:
-                    addressBook.addContactDetails();
+
+                    System.out.println("enter no of contacts to be added");
                     int noOfContacts = sc.nextInt();
                     for(int i = 0; i < noOfContacts; i++) {
                         addressBook.addContactDetails();
@@ -54,6 +55,37 @@ public class AddressBookMain {
                 case 4:
                     flag =false;
                     break;
+
+            }
+        }
+
+    }
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Address Book  System ");
+        AddressBookMain addressBookMain = new AddressBookMain();
+        boolean flag =true;
+        while(flag)
+        {
+            System.out.println("1.Add New Address Book");
+            System.out.println("2.Exit");
+            System.out.println("Enter choice: ");
+            int option = sc.nextInt();
+            switch (option){
+                case 1: {
+                    System.out.println("Enter the Name of Address Book: ");
+                    String addressBookName = sc.next();
+                    if(addressBookMain.addressBookListMap.containsKey(addressBookName)){
+                        System.out.println("The Address book Already Exists");
+                        break;
+                    }else {
+                        addressBookMain.addAddressBook(addressBookName);
+                        break;
+                    }
+                }
+                case 2:{
+                    flag = false;
+                    break;
+                }
             }
         }
     }
